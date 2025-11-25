@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="p-4">
+    <h2 class="mb-4">All Contacts</h2>
+
+    <a href="/add" class="btn btn-primary mb-3">Add New Contact</a>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First</th>
+                <th>Last</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody th:each="contact : ${contacts}">
+            <tr>
+                <td th:text="${contact.id}"></td>
+                <td th:text="${contact.firstName}"></td>
+                <td th:text="${contact.lastName}"></td>
+                <td th:text="${contact.phone}"></td>
+                <td th:text="${contact.email}"></td>
+                <td th:text="${contact.address}"></td>
+                <td>
+                    <a th:href="@{'/edit/' + ${contact.id}}" class="btn btn-warning btn-sm">Edit</a>
+                    <a th:href="@{'/delete/' + ${contact.id}}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
